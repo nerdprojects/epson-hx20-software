@@ -51,10 +51,10 @@ Check out the great HX-20 manuals. They contain very details descriptions of the
     | 0A40-3FFF | RAM
     |___________|
     |           |
-    | 4000-5FFF | RAM
+    | 4000-5FFF | RAM (With the expansion card I have installed, otherwise its empty)
     |___________|
     |           |
-    | 6000-7FFF | RAM
+    | 6000-7FFF | RAM (With the expansion card I have installed, otherwise its the optional ROM)
     |___________|
     |           |
     | 8000-9FFF | BASIC ROM 3
