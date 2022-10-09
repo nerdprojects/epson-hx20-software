@@ -1,6 +1,6 @@
 *
 * Example of Terminal Mode
-* ( Code from Software Manual Chapter 5, page 7)
+* ( Code from Software Manual page 5-23 (code listing 7), 5-24 (code listing 8) )
 *
         OPT     H01
         ORG     $1000

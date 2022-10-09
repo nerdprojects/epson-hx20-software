@@ -1,5 +1,6 @@
 # Terminal Emulator Software
-Used to communicate with other RS232 devices.
+Manually typed from the Software Manual page 5-23 (code listing 7) and 5-24 (code listing 8).
+Can be used to communicate with other RS232 devices.
 
 ## Instructions
 You can for example use miniterm.py on the system you want to communicate with the HX-20:
