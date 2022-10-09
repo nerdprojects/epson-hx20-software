@@ -8,17 +8,21 @@ The two stage loader scripts I use the most:
 
 ### Usage
 1. Enter BASIC on the HX-20 and issue following LOAD command:
-  LOAD"COM0:(68N13)"
-2. Write the setup.bas to the HX-20
-  ./write-bas.py /dev/ttyUSB0 setup.bas
-3. On the HX-20 run the the BASIC program
-  RUN
-4. After that you can hit the BREAK button on the HX-20 and you should have two new menu entries
-  3 LOADER
-  4 PROGRAM
+
+        LOAD"COM0:(68N13)"
+2. Write the setup.bas to the HX-20:
+
+        ./write-bas.py /dev/ttyUSB0 setup.bas
+3. On the HX-20 run the the BASIC program:
+        RUN
+4. After that you can hit the BREAK button on the HX-20 and you should have two new menu entries:
+
+        3 LOADER
+        4 PROGRAM
 5. Hit 3 to start the binary loader
-6. Send your compiled, binary program to the HX-20
-   ./write-asm.py /dev/ttyUSB some-binary-program.b
+6. Send your compiled, binary program to the HX-20:
+
+        ./write-asm.py /dev/ttyUSB some-binary-program.b
 7. Hit BREAK when done with sending
 8. Now you can run the program with the menu entry "4. PROGRAM" or the MONITOR command "G1000"
 
@@ -31,13 +35,15 @@ An alternative but slower way to load assembly programs. It's a script that conv
 
 ### Usage
 1. Enter BASIC on the HX-20 and issue following LOAD command:
-  LOAD"COM0:(68N13)"
+
+        LOAD"COM0:(68N13)"
 2. Run the script:
-  ./convert-asm-basic-loader.py /dev/ttyUSB0 some-binary-program.b
-3. On the HX-20 run the the BASIC program
-  RUN
-4. You can now use following BASIC command to run the program (or use the MONTIOR command G1000)
-  EXEC&H1000
+
+        ./convert-asm-basic-loader.py /dev/ttyUSB0 some-binary-program.b
+3. On the HX-20 run the the BASIC program:
+
+        RUN
+4. You can now use the MONTIOR command "G1000" to run the program or use the BASIC command "EXEC&H1000"
 
 ## write-asm.py / write-bas.py
 Scripts used to send binary or BASIC files to the HX-20 over the serial port.
