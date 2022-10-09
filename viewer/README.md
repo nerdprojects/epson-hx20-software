@@ -5,8 +5,8 @@ With these programs, I checked how fast I can display images on the HX-20.
 - viewer.asm -> Final program I came up with, can be used to display images and fluid animations.
 - convert-png-to-asm.py -> Converts a png image to assembly data definitions.
 - convert-png-to-bas.py -> Converts a png image to a BASIC script that displays the image.
-- speed-test-dispit.asm -> Test to check the speed of the ASM subroutine DISPIT.
-- speed-test-print -> Test to check the speed of the BASIC command PRINT.
+- speed-test-dispit.asm / speed-test-dispit.b -> Test to check the speed of the ASM subroutine DISPIT.
+- speed-test-print.bas -> Test to check the speed of the BASIC command PRINT.
 - speed-test-pset.bas -> Test to check the speed of the BASIC command PSET.
 - examples/carlton.b -> Compiled animation of Carlton from Fresh Prince. Original GIF created by Gustavo Viselner.
 - examples/geometry.b -> Compiled animation of 3 spinning geometric shapes.
