@@ -40,34 +40,34 @@ I use f9dasm for this: https://github.com/Arakula/f9dasm
 Check out the great HX-20 manuals. They contain very details descriptions of the system (software and hardware) and even assembly listings of the operating system ROM. They can be found here for example: http://www.vintagecomputer.net/fjkraan/comp/hx20/doc/
 
 ### Memory Map
- ___________
-|           |
-| 0000-004D | Protected BIOS RAM
-|___________|
-|           |
-| 004F-0A3F | RAM (Used by BIOS and BASIC I think)
-|___________|
-|           |
-| 0A40-3FFF | RAM
-|___________|
-|           |
-| 4000-5FFF | RAM
-|___________|
-|           |
-| 6000-7FFF | RAM
-|___________|
-|           |
-| 8000-9FFF | BASIC ROM 3
-|___________|
-|           |
-| A000-BFFF | BASIC ROM 2
-|___________|
-|           |
-| C000-DFFF | BIOS ROM 1
-|___________|
-|           |
-| E000-FFFF | BIOS ROM 0
-|___________|
+     ___________
+    |           |
+    | 0000-004D | Protected BIOS RAM
+    |___________|
+    |           |
+    | 004F-0A3F | RAM (Used by BIOS and BASIC I think)
+    |___________|
+    |           |
+    | 0A40-3FFF | RAM
+    |___________|
+    |           |
+    | 4000-5FFF | RAM
+    |___________|
+    |           |
+    | 6000-7FFF | RAM
+    |___________|
+    |           |
+    | 8000-9FFF | BASIC ROM 3
+    |___________|
+    |           |
+    | A000-BFFF | BASIC ROM 2
+    |___________|
+    |           |
+    | C000-DFFF | BIOS ROM 1
+    |___________|
+    |           |
+    | E000-FFFF | BIOS ROM 0
+    |___________|
 
 ### Bank Switching
 If you have an expansion card installed, it's possible to do bank switching. (Described in the Hardware Manual on page 4-30).
@@ -90,17 +90,17 @@ This table can also be modified manually:
 - First the value 0x3a, 0x41, 0x15, 0x00 is written to 0x13c, where 0x15, 0x00 is the address of the exec header, which can be freely chosen.
 - Then at 0x1500 the exec header is written in the same format as the ROM headers:
 
-   | 0x41 (A) = Application, 0x42 (B) = BASIC Interpreter
-   |
-   |    | adress of next header, 0xffff if last header
-   |    | 
-   |    |  __| start address   __| end byte
-   |  __| |  |                 | |
-  || |  | |  | M O  N I  T O  R| |
-ba41 ffff d77e 4d4f 4e49 544f 5200
-
-                B A  S  I  C
-ba42 ffff 800c 4241 5349 4300
+         | 0x41 (A) = Application, 0x42 (B) = BASIC Interpreter
+         |
+         |    | adress of next header, 0xffff if last header
+         |    | 
+         |    |  __| start address   __| end byte
+         |  __| |  |                 | |
+        || |  | |  | M O  N I  T O  R| |
+      ba41 ffff d77e 4d4f 4e49 544f 5200
+                                        
+                     B A  S  I  C
+      ba42 ffff 800c 4241 5349 4300
 
 ### Reprogram Function Keys
 Apart from using the BASIC commands "KEY" and "KEY LIST", it's also possible to modify the function keys with the MONITOR:
