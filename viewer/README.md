@@ -1,5 +1,6 @@
 # Image Viewer Programs
-With these programs, I checked how fast I can display images on the HX-20.
+The viewer program can be used to display single images or multiple images as animation on the HX-20 internal display.
+https://www.youtube.com/watch?v=EBWWW3RCGLU
 
 ## Programs
 - viewer.asm -> Final program I came up with, can be used to display images and fluid animations.
@@ -13,7 +14,6 @@ With these programs, I checked how fast I can display images on the HX-20.
 - examples/tunnel.b -> Compiled endless tunnel animation.
 
 ## Notes
-The viewer program can be used to display single images or multiple images as animation on the HX-20 internal display.
 Because the onboard BASIC command PSET and the ASM subroutine DISPIT are quire slow,
 the program accesses the rather low level ASM subroutines WRTP26, LCDMOD and DATAMOD to fill the screen with data. I put this together by looking at the code listings of the firmwares LCD driver routines in the Software Manual on page 3-8.
 
