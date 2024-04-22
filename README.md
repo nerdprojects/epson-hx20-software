@@ -37,7 +37,7 @@ I use f9dasm for this: https://github.com/Arakula/f9dasm
 
 ## Information
 ### Manuals
-Check out the great HX-20 manuals. They contain very details descriptions of the system (software and hardware) and even assembly listings of the operating system ROM. They can be found here for example: http://www.vintagecomputer.net/fjkraan/comp/hx20/doc/
+Check out the great HX-20 manuals. They contain very details descriptions of the system (software and hardware) and even assembly listings of the operating system ROM. They can be found here for example: https://electrickery.nl/comp/hx20/doc
 
 ### Memory Map
      ___________
