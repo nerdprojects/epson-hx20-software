@@ -6,6 +6,7 @@ A collection of little programs I wrote for the HX-20.
 - dump-memory -> BASIC and assembly version of a memory dump tool, that just sends out the memory content to the serial port
 - terminal -> Terminal emulator software (based on the according listing in the software manual)
 - loader -> Consisting of a BASIC script that sets up a binary loader, that can be used to load assembly programs from the serial port
+- basic-decoder -> A python script that converts the binary Epson Basic format to a human-readable format. 
 - hello-word -> Hello world for Epson HX-20 in assembly
 - viewer -> An assembly program to display images or fluid animations on the HX-20.
 
