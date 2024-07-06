@@ -1,13 +1,25 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 from PIL import Image
 import sys
 
 if len(sys.argv) < 2:
-  print "provide 120x32 grayscale png-8 image"
+  print('provide 120x32 grayscale png-8 image')
   sys.exit(-1)
 
 image = Image.open(sys.argv[1])
+if (image.format != 'PNG'):
+  print('provided image is not png')
+  sys.exit(-1)
+
+if (image.mode != 'L'):
+  print('provided image is not 8-bit grayscale')
+  sys.exit(-1)
+
+if (image.size != (120, 32)):
+  print('provided image is not 120x32')
+  sys.exit(-1)
+
 pixels = image.load()
 
 basic_code  = '00 CLS\r\n'
