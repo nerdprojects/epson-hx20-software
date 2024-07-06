@@ -29,7 +29,7 @@ I make a folder with the same name as the .wav file, for the blocks files:
 
 There are two algorithms that I came up with, which recover data differently. Zerocross works best most of the time:
 
-    ../tape-recover.py zerocross test_recording.wav
+    ../tape-recover.py zerocross ../test_recording.wav
 
 For every identified block, a file is created:
 
@@ -71,18 +71,18 @@ Provide the file prefix as parameter to the script. Most of the time, this will 
 If the script finds a valid block file for every block, it will recover the original file. Depending on the file type it will create a .BAS, .DATA or .ASM file.
 
 ### Convert Binary Basic
-The basic-decode.py script can be used to convert the binary Epson Basic format (.BIN.BAS files) to a human readable format. See [https://github.com/nerdprojects/epson-hx20-software/tree/main/basic-decoder](https://github.com/nerdprojects/epson-hx20-software/tree/main/basic-decoder).
+The basic-decoder.py script can be used to convert the binary Epson Basic format (.BIN.BAS files) to a human readable format. See [https://github.com/nerdprojects/epson-hx20-software/tree/main/basic-decoder](https://github.com/nerdprojects/epson-hx20-software/tree/main/basic-decoder).
 
 ### Failed Recoveries
 Fixing bad recordings is currently manual labor.
 
 You can try to use the peak algorithm instead of the zerocross:
 
-    ../tape-recover.py peak test_recording.wav
+    ../tape-recover.py peak ../test_recording.wav
 
 Or try to detect issues with the plot functionality:
 
-    ../tape-recover.py zerocross test_recording.wav 0.0 plot
+    ../tape-recover.py zerocross ../test_recording.wav 0.0 plot
    
 <img src="https://raw.githubusercontent.com/nerdprojects/epson-hx20-software/main/tape-recover/zerocross-plot.png"/>
 
