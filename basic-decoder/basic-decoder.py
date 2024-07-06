@@ -162,6 +162,8 @@ basic_functions[215] = "ERR"
 
 def print_char(char):
   global over_file_size
+  if char < 0x20:
+    print_info('non-printable character ' + hex(char))
   if not over_file_size:
     sys.stdout.buffer.write(input_byte.to_bytes(1,'big'))
     sys.stdout.flush()
@@ -179,8 +181,15 @@ def print_string(string):
     sys.stderr.flush()
 
 def print_info(string):
-  print('\n---> ' + string, file=sys.stderr)
+  sys.stderr.buffer.write(bytes('\n---> ' + string + '\n', 'ascii'))
   sys.stderr.flush()
+
+def read_file_bytes(file, count):
+  input_bytes = file.read(count)
+  if len(input_bytes) != count:
+    print_info('reached end of file')
+    sys.exit(0)
+  return input_bytes
   
 # on the hx-20 character code table, we only have assignments to 0x9f
 # from 0xa0 to 0xff no assignments are present.
@@ -204,13 +213,13 @@ if not os.path.isfile(input_file_path):
 
 input_file_size = os.path.getsize(input_file_path)
 input_file = open(input_file_path, 'rb')
-header_byte = input_file.read(1)[0]
+header_byte = read_file_bytes(input_file, 1)[0]
 if header_byte != 0xff:
   print_info('header 0xff not found')
   sys.exit(1)
 
 print_info('start decoding')
-size = int.from_bytes(input_file.read(2), byteorder='big', signed=False)
+size = int.from_bytes(read_file_bytes(input_file, 2), byteorder='big', signed=False)
 over_file_size = False
 print_info('size is: '+str(size))
 
@@ -219,18 +228,22 @@ while True:
   # currently this is just a wild guess here
   # i think it might be the size of the current command or so
   # or where the next command is located
-  some_bytes_we_dont_know_yet_for_what_they_are_used = input_file.read(2)
+  some_bytes_we_dont_know_yet_for_what_they_are_used = read_file_bytes(input_file, 2)
   #print_info(some_bytes_we_dont_know_yet_for_what_they_are_used.hex() + ' ' + hex(input_file.tell()))
-  if(some_bytes_we_dont_know_yet_for_what_they_are_used[1] == 0x1b):
-    some_bytes_we_dont_know_yet_for_what_they_are_used = input_file.read(1)
+  if some_bytes_we_dont_know_yet_for_what_they_are_used[1] == 0x1b:
+    some_bytes_we_dont_know_yet_for_what_they_are_used = read_file_bytes(input_file, 1)
     #print_info(some_bytes_we_dont_know_yet_for_what_they_are_used.hex() + ' ' + hex(input_file.tell()))
-  linenumber = int.from_bytes(input_file.read(2), byteorder='big', signed=False)
+  linenumber_bytes = read_file_bytes(input_file, 2)
+  # it seems, that if there is a linenumber with 0x1b as the first byte, an additonal 0x1b is present after it
+  # kind of confusing, but for now i just read this byte and ignore it
+  if linenumber_bytes[1] == 0x1b:
+    #print_info('skipping over additional 0x1b in line number')
+    read_file_bytes(input_file, 1)
+  linenumber = int.from_bytes(linenumber_bytes, byteorder='big', signed=False)
+
   print_string(str(linenumber) + ' ')
   in_quotes = False
-  input_bytes = input_file.read(1)
-  if input_bytes == b'':
-    print_info('reached end of file')
-    sys.exit(0)
+  input_bytes = read_file_bytes(input_file, 1)
   input_byte = input_bytes[0]
   while input_byte != 0x00:
 
@@ -240,10 +253,7 @@ while True:
     if in_quotes:
       print_char(input_byte)
     elif input_byte == 0xff:
-      input_bytes = input_file.read(1)
-      if input_bytes == b'':
-        print_info('reached end of file')
-        sys.exit(0)
+      input_bytes = read_file_bytes(input_file, 1)
       function_byte = input_bytes[0]
       if basic_functions.get(function_byte) != None:
         print_string(basic_functions[function_byte])
@@ -253,12 +263,8 @@ while True:
         print_string(basic_commands[input_byte])
     else:
         print_char(input_byte)
-    input_bytes = input_file.read(1)
-    if input_bytes == b'':
-      print_info('reached end of file')
-      sys.exit(0)
+    input_bytes = read_file_bytes(input_file, 1)
     input_byte = input_bytes[0]
-
 
   print_string('\n')
   if(input_file.tell() > size):
