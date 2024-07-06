@@ -17,7 +17,7 @@ I use a Microcasette recorder / player for this:
 I connect the headphone output of the player to the input jack of my laptop and record it with Audacity.
 Make sure you setup a mono channel recording. 
 
-The script should be able to handle different sample rates and bit-depths. I normally use CD quality: 44.1 khz / 16 bit. But 22.05 khz / 8 bit also work.
+The script should be able to handle different sample rates and bit-depths. I normally use CD quality: 44.1 khz / 16 bit. But 22.05 khz / 8 bit also works.
 
 ### Recover Block Information
 To recover block data from a .wav file, the tape-recover.py script can be run.
@@ -27,7 +27,7 @@ I make a folder with the same name as the .wav file, for the blocks files:
     mkdir test_recording
     cd test_recording
 
-There are different algorithms that I came up with, which recover data differently. Zerocross works best most of the time:
+There are two algorithms that I came up with, which recover data differently. Zerocross works best most of the time:
 
     ../tape-recover.py zerocross test_recording.wav
 
@@ -69,6 +69,9 @@ Provide the file prefix as parameter to the script. Most of the time, this will 
     ../merge-blocks.py test_recording
 
 If the script finds a valid block file for every block, it will recover the original file. Depending on the file type it will create a .BAS, .DATA or .ASM file.
+
+### Convert Binary Basic
+The basic-decode.py script can be used to convert the binary Epson Basic format (.BIN.BAS files) to a human readable format. See [https://github.com/nerdprojects/epson-hx20-software/tree/main/basic-decoder](https://github.com/nerdprojects/epson-hx20-software/tree/main/basic-decoder).
 
 ### Failed Recoveries
 Fixing bad recordings is currently manual labor.
