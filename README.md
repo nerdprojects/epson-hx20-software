@@ -4,7 +4,7 @@ A collection of little programs I wrote for the HX-20.
 
 ## Programs
 - dump-memory -> BASIC and assembly version of a memory dump tool, that just sends out the memory content to the serial port
-- terminal -> Terminal emulator software (based on the according listing in the software manual)
+- terminal -> Terminal emulator software (based on the corresponding listing in the software manual)
 - loader -> Consisting of a BASIC script that sets up a binary loader, that can be used to load assembly programs from the serial port
 - tape-recover -> Scripts that can recover programs and data from HX-20 tape recordings.
 - basic-decoder -> A python script that converts the binary Epson Basic format to a human-readable format. 
@@ -39,7 +39,7 @@ I use f9dasm for this: https://github.com/Arakula/f9dasm
 
 ## Information
 ### Manuals
-Check out the great HX-20 manuals. They contain very details descriptions of the system (software and hardware) and even assembly listings of the operating system ROM. They can be found here for example: https://electrickery.nl/comp/hx20/doc
+Check out the great HX-20 manuals. They contain very detailed descriptions of the system (software and hardware) and even assembly listings of the operating system ROM. They can be found here for example: https://electrickery.nl/comp/hx20/doc
 
 ### Memory Map
      ___________
@@ -53,10 +53,10 @@ Check out the great HX-20 manuals. They contain very details descriptions of the
     | 0A40-3FFF | RAM
     |___________|
     |           |
-    | 4000-5FFF | RAM (With the expansion card I have installed, otherwise its empty)
+    | 4000-5FFF | RAM (With the expansion card I have installed, otherwise it's empty)
     |___________|
     |           |
-    | 6000-7FFF | RAM (With the expansion card I have installed, otherwise its the optional ROM)
+    | 6000-7FFF | RAM (With the expansion card I have installed, otherwise it's the optional ROM)
     |___________|
     |           |
     | 8000-9FFF | BASIC ROM 3
@@ -86,8 +86,8 @@ To switch the internal BASIC roms to the expansion board roms (ROM4: 0x8000 - 0x
 Described in the Software Manual on page 16-1.
 
 The headers have to be at the start addresses of the ROM.
-(0xc000, 0xa000, 0x8000, 0x6000, 0x4000). Other header may follow but have to be linked by the first one.
-The init function (ctrl+shift+§ / cold start) poulates a table with the reference to the found exec headers.
+(0xc000, 0xa000, 0x8000, 0x6000, 0x4000). Other headers may follow but have to be linked by the first one.
+The init function (ctrl+shift+§ / cold start) populates a table with the reference to the found exec headers.
 This table can also be modified manually:
 - First the value 0x3a, 0x41, 0x15, 0x00 is written to 0x13c, where 0x15, 0x00 is the address of the exec header, which can be freely chosen.
 - Then at 0x1500 the exec header is written in the same format as the ROM headers:
